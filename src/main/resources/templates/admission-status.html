@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admission Status | M.J Academy</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <style>
+
+        .status-page {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+            background: #f7f3e9;
+        }
+
+        .status-card {
+            width: 100%;
+            max-width: 550px;
+            background: #ffffff;
+            padding: 40px 30px;
+            border-radius: 18px;
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.12);
+        }
+
+        .status-icon {
+            width: 75px;
+            height: 75px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            background: #0b5d3b;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 32px;
+        }
+
+        .status-card h1 {
+            text-align: center;
+            margin-bottom: 10px;
+            color: #0b5d3b;
+        }
+
+        .status-card > p {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .status-form {
+            text-align: left;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 13px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 15px;
+            box-sizing: border-box;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #0b5d3b;
+        }
+
+        .check-btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            background: #0b5d3b;
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .check-btn:hover {
+            background: #08482e;
+        }
+
+        /* Result */
+
+        .admission-result {
+            margin-top: 30px;
+            padding: 25px;
+            border-radius: 12px;
+            background: #f4f9f6;
+            border: 1px solid #d9e9df;
+        }
+
+        .admission-result h2 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: #0b5d3b;
+            text-align: center;
+        }
+
+        .application-box {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .application-box:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .result-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            padding: 8px 0;
+        }
+
+        .result-label {
+            font-weight: 600;
+            color: #444;
+        }
+
+        .result-value {
+            color: #222;
+            text-align: right;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .status-pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status-approved {
+            background: #d1e7dd;
+            color: #0f5132;
+        }
+
+        .status-rejected {
+            background: #f8d7da;
+            color: #842029;
+        }
+
+        /* Error */
+
+        .status-error {
+            margin-top: 25px;
+            padding: 15px;
+            border-radius: 10px;
+            background: #f8d7da;
+            color: #842029;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .back-home {
+            display: block;
+            margin-top: 25px;
+            text-align: center;
+            color: #0b5d3b;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .back-home:hover {
+            text-decoration: underline;
+        }
+
+        /* Mobile */
+
+        @media (max-width: 600px) {
+
+            .status-page {
+                padding: 25px 15px;
+            }
+
+            .status-card {
+                padding: 30px 20px;
+            }
+
+            .result-row {
+                flex-direction: column;
+                gap: 3px;
+            }
+
+            .result-value {
+                text-align: left;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="status-page">
+
+    <div class="status-card">
+
+        <div class="status-icon">
+            ✓
+        </div>
+
+        <h1>Admission Status</h1>
+
+        <p>
+            Enter your registered mobile number
+            to check your admission status.
+        </p>
+
+        <!-- Status Search Form -->
+
+        <form class="status-form"
+              action="/admission-status"
+              method="get">
+
+            <div class="form-group">
+
+                <label for="phone">
+                    Mobile Number
+                </label>
+
+                <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        placeholder="Enter your mobile number"
+                        required>
+
+            </div>
+
+            <button type="submit" class="check-btn">
+                Check Status
+            </button>
+
+        </form>
+
+
+        <!-- Admission Results -->
+
+        <div th:if="${admissions != null}"
+             class="admission-result">
+
+            <h2>Application Found</h2>
+
+            <div th:each="admission : ${admissions}"
+                 class="application-box">
+
+                <div class="result-row">
+
+                    <span class="result-label">
+                        Application ID
+                    </span>
+
+                    <span class="result-value"
+                          th:text="${admission.id}">
+                        -
+                    </span>
+
+                </div>
+
+
+                <div class="result-row">
+
+                    <span class="result-label">
+                        Student Name
+                    </span>
+
+                    <span class="result-value"
+                          th:text="${admission.studentName}">
+                        -
+                    </span>
+
+                </div>
+
+
+                <div class="result-row">
+
+                    <span class="result-label">
+                        Parent / Guardian
+                    </span>
+
+                    <span class="result-value"
+                          th:text="${admission.parentName}">
+                        -
+                    </span>
+
+                </div>
+
+
+                <div class="result-row">
+
+                    <span class="result-label">
+                        Course
+                    </span>
+
+                    <span class="result-value"
+                          th:text="${admission.course}">
+                        -
+                    </span>
+
+                </div>
+
+
+                <div class="result-row">
+
+                    <span class="result-label">
+                        Application Date
+                    </span>
+
+                    <span class="result-value"
+                          th:text="${#temporals.format(admission.applicationDate, 'dd MMM yyyy, hh:mm a')}">
+                        -
+                    </span>
+
+                </div>
+
+
+                <div class="result-row">
+
+                    <span class="result-label">
+                        Status
+                    </span>
+
+                    <span
+                            class="status-badge"
+                            th:text="${admission.status}"
+                            th:classappend="${admission.status == 'PENDING'} ? ' status-pending' :
+                                            (${admission.status == 'APPROVED'} ? ' status-approved' :
+                                            ' status-rejected')">
+                        PENDING
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Error Message -->
+
+        <div th:if="${error != null}"
+             class="status-error">
+
+            <p th:text="${error}">
+                No application found.
+            </p>
+
+        </div>
+
+
+        <!-- Back -->
+
+        <a href="/" class="back-home">
+            ← Back to Home
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

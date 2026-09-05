@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admission Details | M.J Academy</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f9f5;
+            color: #333;
+        }
+
+        .details-header {
+            background: #084c37;
+            color: white;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .details-header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .back-btn {
+            background: white;
+            color: #084c37;
+            padding: 10px 18px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .details-container {
+            width: 92%;
+            max-width: 900px;
+            margin: 40px auto;
+        }
+
+        .details-card {
+            background: white;
+            border-radius: 18px;
+            padding: 35px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .details-title {
+            margin-bottom: 30px;
+            border-bottom: 1px solid #e5e5e5;
+            padding-bottom: 20px;
+        }
+
+        .details-title h2 {
+            color: #084c37;
+            margin: 0 0 8px;
+        }
+
+        .details-title p {
+            color: #777;
+            margin: 0;
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .detail-item {
+            background: #f4f9f5;
+            padding: 18px;
+            border-radius: 10px;
+        }
+
+        .detail-item label {
+            display: block;
+            color: #777;
+            font-size: 13px;
+            margin-bottom: 7px;
+            font-weight: bold;
+        }
+
+        .detail-item p {
+            margin: 0;
+            color: #084c37;
+            font-size: 16px;
+            font-weight: 600;
+            word-break: break-word;
+        }
+
+        .additional-info {
+            margin-top: 25px;
+            background: #f4f9f5;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .additional-info label {
+            display: block;
+            color: #777;
+            font-size: 13px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .additional-info p {
+            margin: 0;
+            color: #444;
+            line-height: 1.7;
+            white-space: pre-wrap;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 7px 13px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .back-bottom {
+            display: inline-block;
+            margin-top: 25px;
+            background: #084c37;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        @media (max-width: 650px) {
+
+            .details-header {
+                padding: 15px;
+            }
+
+            .details-header h1 {
+                font-size: 18px;
+            }
+
+            .back-btn {
+                padding: 8px 12px;
+                font-size: 13px;
+            }
+
+            .details-container {
+                width: 92%;
+                margin: 25px auto;
+            }
+
+            .details-card {
+                padding: 22px 18px;
+            }
+
+            .details-grid {
+                grid-template-columns: 1fr;
+                gap: 14px;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+<header class="details-header">
+
+    <h1>M.J Academy - Admin</h1>
+
+    <a href="/admin/admissions" class="back-btn">
+        ← Back
+    </a>
+
+</header>
+
+
+<div class="details-container">
+
+    <div class="details-card">
+
+        <div class="details-title">
+
+            <h2>Admission Details</h2>
+
+            <p>
+                Complete information submitted by the student/parent.
+            </p>
+
+        </div>
+
+
+        <div class="details-grid">
+
+            <div class="detail-item">
+
+                <label>Application ID</label>
+
+                <p th:text="${admission.id}">
+                    1
+                </p>
+
+            </div>
+
+
+            <div class="detail-item">
+
+                <label>Application Date</label>
+
+                <p th:text="${admission.applicationDate}">
+                    Date
+                </p>
+
+            </div>
+
+
+            <div class="detail-item">
+
+                <label>Student Name</label>
+
+                <p th:text="${admission.studentName}">
+                    Student Name
+                </p>
+
+            </div>
+
+
+            <div class="detail-item">
+
+                <label>Parent / Guardian</label>
+
+                <p th:text="${admission.parentName}">
+                    Parent Name
+                </p>
+
+            </div>
+
+
+            <div class="detail-item">
+
+                <label>Mobile Number</label>
+
+                <p th:text="${admission.phone}">
+                    9999999999
+                </p>
+
+            </div>
+
+
+            <div class="detail-item">
+
+                <label>Age</label>
+
+                <p th:text="${admission.age}">
+                    10
+                </p>
+
+            </div>
+
+
+            <div class="detail-item">
+
+                <label>Selected Course</label>
+
+                <p th:text="${admission.course}">
+                    Maktab
+                </p>
+
+            </div>
+
+
+            <div class="detail-item">
+
+                <label>Status</label>
+
+                <p>
+                    <span
+                            class="status-badge"
+                            th:text="${admission.status}">
+                        PENDING
+                    </span>
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- ADDITIONAL INFORMATION -->
+
+        <div class="additional-info">
+
+            <label>Additional Information</label>
+
+            <p
+                    th:if="${admission.message != null and !#strings.isEmpty(admission.message)}"
+                    th:text="${admission.message}">
+                Additional information
+            </p>
+
+            <p
+                    th:if="${admission.message == null or #strings.isEmpty(admission.message)}">
+                No additional information provided.
+            </p>
+
+        </div>
+
+
+        <a
+                href="/admin/admissions"
+                class="back-bottom">
+
+            ← Back to Applications
+
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>
