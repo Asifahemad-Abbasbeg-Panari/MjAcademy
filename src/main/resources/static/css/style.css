@@ -1193,48 +1193,36 @@ a {
     color: #0b5d3b;
     font-weight: bold;
 }
-
-
 /* ================= COURSE BUTTON ================= */
 
 .course-btn {
     display: block;
+    width: 100%;
+    box-sizing: border-box;
 
     margin-top: auto;
-
     padding: 13px 20px;
 
     text-align: center;
 
-    background: #0b5d3b;
-    color: #ffffff;
+    background: #0b5d3b !important;
+    color: #ffffff !important;
 
     border-radius: 9px;
 
-    text-decoration: none;
+    text-decoration: none !important;
     font-weight: 600;
 
-    transition: background 0.3s ease,
-    transform 0.2s ease;
+    opacity: 1 !important;
+
+    transition: background 0.3s ease, transform 0.2s ease;
 }
 
 .course-btn:hover {
-    background: #08482e;
+    background: #08482e !important;
+    color: #ffffff !important;
     transform: translateY(-2px);
 }
-
-
-/* ================= TABLET ================= */
-
-@media (max-width: 1000px) {
-
-    .course-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-}
-
-
 /* ================= MOBILE ================= */
 
 @media (max-width: 650px) {
@@ -1587,4 +1575,229 @@ body.dark-mode .dark-mode-toggle {
     border-radius: 12px !important;
 
     cursor: pointer;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    width: 75px;
+    height: 65px;
+    object-fit: contain;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+}
+
+.site-logo {
+    width: 65px;
+    height: 65px;
+    object-fit: contain;
+}
+
+.logo-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-details h2 {
+    margin: 0;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 24px;
+    font-weight: 500;
+    color: #2f7d32;
+    white-space: nowrap;
+}
+
+.logo-subtitle {
+    display: flex;
+    gap: 18px;
+    margin-top: 3px;
+}
+
+.logo-subtitle span {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 13px;
+    color: #2f7d32;
+    white-space: nowrap;
+}
+
+/* ================= VISION & MISSION ================= */
+
+.vision-mission {
+    padding: 80px 0;
+}
+
+.vision-mission-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+    align-items: stretch;
+}
+
+.vision-mission-card {
+    display: flex;
+    gap: 25px;
+
+    padding: 35px;
+
+    background: #ffffff;
+    border: 1px solid #dfe9e4;
+    border-radius: 18px;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+
+    transition: transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.vision-mission-card:hover {
+    transform: translateY(-5px);
+
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+}
+
+
+/* ICON */
+
+.vm-icon {
+    flex: 0 0 58px;
+
+    width: 58px;
+    height: 58px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #e0f2e9;
+    color: #087a4b;
+
+    border-radius: 14px;
+
+    font-size: 24px;
+}
+
+
+/* CONTENT */
+
+.vm-content {
+    flex: 1;
+}
+
+.vm-content h3 {
+    margin: 0 0 15px;
+
+    font-size: 24px;
+    color: #10231b;
+}
+
+.vm-content p {
+    margin: 0 0 14px;
+
+    line-height: 1.7;
+    color: #53635c;
+}
+
+.vm-highlight {
+    color: #10231b !important;
+}
+
+
+/* MISSION LIST */
+
+.mission-list {
+    margin: 10px 0 20px;
+    padding: 0;
+
+    list-style: none;
+}
+
+.mission-list li {
+    position: relative;
+
+    margin-bottom: 10px;
+    padding-left: 25px;
+
+    color: #53635c;
+    line-height: 1.5;
+}
+
+.mission-list li::before {
+    content: "✓";
+
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    color: #087a4b;
+    font-weight: 700;
+}
+
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 768px) {
+
+    .vision-mission {
+        padding: 60px 0;
+    }
+
+    .vision-mission-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .vision-mission-card {
+        padding: 25px;
+        gap: 18px;
+    }
+
+    .vm-icon {
+        flex: 0 0 50px;
+
+        width: 50px;
+        height: 50px;
+
+        font-size: 20px;
+    }
+
+    .vm-content h3 {
+        font-size: 21px;
+    }
+
+}
+
+/* ================= VISION & MISSION - DARK MODE ================= */
+
+body.dark-mode .vision-mission-card {
+    background: #16221d;
+    border-color: #2d4037;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+body.dark-mode .vm-content h3 {
+    color: #ffffff;
+}
+
+body.dark-mode .vm-content p {
+    color: #c4d0ca;
+}
+
+body.dark-mode .vm-highlight {
+    color: #ffffff !important;
+}
+
+body.dark-mode .mission-list li {
+    color: #c4d0ca;
+}
+
+body.dark-mode .vm-icon {
+    background: #203b30;
+    color: #404040;
 }
